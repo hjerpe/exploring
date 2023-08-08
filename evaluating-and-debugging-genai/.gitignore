@@ -1,0 +1,11 @@
+venvs/
+tokenizers/
+directory_on_my_computer/
+.ipynb_checkpoints/
+wandb/
+*.pyc
+.env
+artifacts/
+weights
+notebook/02_diffusion_training_starter/data/
+notebook/01_intro_starter/data/
