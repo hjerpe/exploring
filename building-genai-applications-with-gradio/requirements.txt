@@ -1,0 +1,10 @@
+python-dotenv
+jupyterlab
+text_generation
+pillow
+torch
+tensorflow
+einops
+accelerate
+tensorrt
+gradio

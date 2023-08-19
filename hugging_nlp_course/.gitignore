@@ -1,0 +1,5 @@
+venvs/
+tokenizers/
+directory_on_my_computer/
+.ipynb_checkpoints/
+test-trainer/
