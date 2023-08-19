@@ -1,0 +1,13 @@
+numpy
+pandas
+tensorflow
+jupyterlab
+pytest
+coverage
+click
+pydantic
+scikit-learn
+python-dateutil
+tiktoken
+sentence_transformers
+transformers[sentencepiece]
