@@ -1,0 +1,4 @@
+python-dotenv
+jupyterlab
+lamini
+datasets

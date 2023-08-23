@@ -1,3 +1,4 @@
 venvs/
 .env
 .ipynb_checkpoints
+**05_data/
