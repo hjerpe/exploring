@@ -2,3 +2,6 @@ python-dotenv
 jupyterlab
 lamini
 datasets
+transformers[torch]
+torch
+accelerate

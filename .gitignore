@@ -2,3 +2,7 @@ venvs/
 .env
 .ipynb_checkpoints
 **05_data/
+**lamini_docs*
+**data/*
+**.pyc
+**.jsonl
