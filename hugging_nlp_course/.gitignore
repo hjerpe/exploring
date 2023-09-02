@@ -3,3 +3,8 @@ tokenizers/
 directory_on_my_computer/
 .ipynb_checkpoints/
 test-trainer/
+**.zip
+**train.json*
+**test.json*
+**.tsv
+**.csv
