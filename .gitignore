@@ -6,3 +6,4 @@ venvs/
 **data/*
 **.pyc
 **.jsonl
+**lm-evaluation-harness
