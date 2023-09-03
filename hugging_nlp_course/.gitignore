@@ -8,3 +8,5 @@ test-trainer/
 **test.json*
 **.tsv
 **.csv
+**__pycache__
+**05_data/

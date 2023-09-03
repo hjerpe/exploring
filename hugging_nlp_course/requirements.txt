@@ -11,3 +11,7 @@ python-dateutil
 tiktoken
 sentence_transformers
 transformers[sentencepiece]
+zstandard
+psutil
+requests
+python-dotenv
