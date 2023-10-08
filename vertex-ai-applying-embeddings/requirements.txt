@@ -1,0 +1,14 @@
+altair==5.1.2
+cohere==4.27
+google-cloud-aiplatform
+ipympl==0.9.3
+jupyterlab
+matplotlib==3.7.3
+mplcursors==0.5.2
+mypy
+numba==0.58.0
+numpy>=1.22.0
+pre-commit
+python-dotenv
+scann==1.2.6
+umap-learn==0.5.4
