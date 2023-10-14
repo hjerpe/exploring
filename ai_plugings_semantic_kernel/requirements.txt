@@ -1,0 +1,5 @@
+chromadb<0.4
+jupyterlab
+python-dotenv
+semantic-kernel==0.3.11.dev0
+torch==2.1.0
