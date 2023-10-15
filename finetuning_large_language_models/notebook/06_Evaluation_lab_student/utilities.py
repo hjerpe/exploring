@@ -1,16 +1,14 @@
-import datasets
-import tempfile
 import logging
-import random
-import config
 import os
-import yaml
-import logging
+import random
 import time
-from dotenv import load_dotenv, find_dotenv
-from llama import LLMEngine
 
+import config
+import datasets
 import transformers
+import yaml
+from dotenv import find_dotenv, load_dotenv
+from llama import LLMEngine
 
 logger = logging.getLogger(__name__)
 global_config = None
@@ -19,7 +17,7 @@ global_config = None
 ########## Permissions ##########
 #############################
 model_name_to_id = {
-  "bigger_model_name" : "06ad41e68cd839fb475a0c1a4ee7a3ad398228df01c9396a97788295d5a0f8bb"
+    "bigger_model_name": "06ad41e68cd839fb475a0c1a4ee7a3ad398228df01c9396a97788295d5a0f8bb"
 }
 
 #############################
@@ -32,10 +30,12 @@ def initialize_config_and_logging(existing_config=None):
     logger.debug("Config: " + str(yaml.dump(global_config.as_dict())))
     return global_config
 
+
 def get_config():
     global global_config
     assert global_config is not None
     return global_config
+
 
 def build_config(existing_config=None):
     configs = [
@@ -57,8 +57,10 @@ def build_config(existing_config=None):
 
     return config.ConfigurationSet(*configs)
 
+
 def get_config_paths():
     paths = []
+
 
 def get_config_paths():
     paths = []
@@ -80,6 +82,7 @@ def get_config_paths():
         paths.append(home_config_path)
 
     return paths
+
 
 def setup_logging(arguments):
     logging_format = "%(asctime)s - %(levelname)s - %(name)s - %(message)s"
@@ -111,84 +114,85 @@ def setup_logging(arguments):
 ##########################
 # Wrapper for data load, split, tokenize for training
 def tokenize_and_split_data(training_config, tokenizer):
-  initialized_config = initialize_config_and_logging(training_config)
-  dataset_path = initialized_config["datasets"]["path"]
-  use_hf = initialized_config["datasets"]["use_hf"]
-  print("tokenize", use_hf, dataset_path)
-  if use_hf:
-    dataset = datasets.load_dataset(dataset_path)
-  else:
-    dataset = load_dataset(dataset_path, tokenizer)
-  train_dataset = dataset["train"]
-  test_dataset = dataset["test"]
-  return train_dataset, test_dataset
+    initialized_config = initialize_config_and_logging(training_config)
+    dataset_path = initialized_config["datasets"]["path"]
+    use_hf = initialized_config["datasets"]["use_hf"]
+    print("tokenize", use_hf, dataset_path)
+    if use_hf:
+        dataset = datasets.load_dataset(dataset_path)
+    else:
+        dataset = load_dataset(dataset_path, tokenizer)
+    train_dataset = dataset["train"]
+    test_dataset = dataset["test"]
+    return train_dataset, test_dataset
+
 
 # Tokenize and split data
 def load_dataset(dataset_path, tokenizer):
     random.seed(42)
-    finetuning_dataset_loaded = datasets.load_dataset("json", data_files=dataset_path, split="train")
+    finetuning_dataset_loaded = datasets.load_dataset(
+        "json", data_files=dataset_path, split="train"
+    )
     tokenizer.pad_token = tokenizer.eos_token
     max_length = training_config["model"]["max_length"]
     tokenized_dataset = finetuning_dataset_loaded.map(
-        get_tokenize_function(tokenizer, max_length), # returns tokenize_function
+        get_tokenize_function(tokenizer, max_length),  # returns tokenize_function
         batched=True,
         batch_size=1,
-        drop_last_batch=True
+        drop_last_batch=True,
     )
     tokenized_dataset = tokenized_dataset.with_format("torch")
-    split_dataset = tokenized_dataset.train_test_split(test_size=0.1, shuffle=True, seed=123)
+    split_dataset = tokenized_dataset.train_test_split(
+        test_size=0.1, shuffle=True, seed=123
+    )
     return split_dataset
+
 
 # Get function for tokenization, based on config parameters
 def get_tokenize_function(tokenizer, _max_length):
+    def tokenize_function(examples):
+        max_length = _max_length
 
-  def tokenize_function(examples):
-    max_length = _max_length
+        # Set pad token
+        tokenizer.pad_token = tokenizer.eos_token
 
-    # Set pad token
-    tokenizer.pad_token = tokenizer.eos_token
+        if "question" in examples and "answer" in examples:
+            text = examples["question"][0] + examples["answer"][0]
+        elif "input" in examples and "output" in examples:
+            text = examples["input"][0] + examples["output"][0]
+        else:
+            text = examples["text"][0]
 
-    if "question" in examples and "answer" in examples:
-      text = examples["question"][0] + examples["answer"][0]
-    elif "input" in examples and "output" in examples:
-      text = examples["input"][0] + examples["output"][0]
-    else:
-      text = examples["text"][0]
-
-    # Run tokenizer on all the text (the input and the output)
-    tokenized_inputs = tokenizer(
-        text,
-
-        # Return tensors in a numpy array (other options are pytorch or tf objects)
-        return_tensors="np",
-
-        # Padding type is to pad to the longest sequence in the batch (other option is to a certain max length, or no padding)
-        padding=True,
-    )
-
-    # Calculate max length
-    max_length = min(
-        tokenized_inputs["input_ids"].shape[1],
-        max_length
-    )
-
-    if tokenized_inputs["input_ids"].shape[1] > max_length:
-        logger.warn(
-            f"Truncating input from {tokenized_inputs['input_ids'].shape[1]} to {max_length}"
+        # Run tokenizer on all the text (the input and the output)
+        tokenized_inputs = tokenizer(
+            text,
+            # Return tensors in a numpy array (other options are pytorch or tf objects)
+            return_tensors="np",
+            # Padding type is to pad to the longest sequence in the batch (other option is to a certain max length, or no padding)
+            padding=True,
         )
 
-    tokenizer.truncation_side = "left"
+        # Calculate max length
+        max_length = min(tokenized_inputs["input_ids"].shape[1], max_length)
 
-    tokenized_inputs = tokenizer(
-        text,
-        return_tensors="np",
-        truncation=True,
-    )
+        if tokenized_inputs["input_ids"].shape[1] > max_length:
+            logger.warn(
+                f"Truncating input from {tokenized_inputs['input_ids'].shape[1]} to {max_length}"
+            )
 
-    tokenized_inputs["labels"] = tokenized_inputs["input_ids"]
+        tokenizer.truncation_side = "left"
 
-    return tokenized_inputs
-  return tokenize_function
+        tokenized_inputs = tokenizer(
+            text,
+            return_tensors="np",
+            truncation=True,
+        )
+
+        tokenized_inputs["labels"] = tokenized_inputs["input_ids"]
+
+        return tokenized_inputs
+
+    return tokenize_function
 
 
 ###########################
@@ -222,6 +226,7 @@ def load_model(training_config, load_base_model=False):
         model_name = training_config["model_name"]
 
     return model, tokenizer, device, model_name
+
 
 # Trainer class to include logging and history
 class Trainer(transformers.Trainer):
@@ -260,27 +265,27 @@ class Trainer(transformers.Trainer):
     def training_step(self, model, inputs):
         if inputs["input_ids"].numel() == 0:
 
-          print("Inputs: ", inputs)
-          print("Inputs - input_ids", inputs["input_ids"])
-          print("numel", inputs["input_ids"].numel())
+            print("Inputs: ", inputs)
+            print("Inputs - input_ids", inputs["input_ids"])
+            print("numel", inputs["input_ids"].numel())
 
-          return torch.tensor(0)
+            return torch.tensor(0)
         else:
-          model.train()
-          inputs = self._prepare_inputs(inputs)
+            model.train()
+            inputs = self._prepare_inputs(inputs)
 
-          with self.compute_loss_context_manager():
-              loss = self.compute_loss(model, inputs)
+            with self.compute_loss_context_manager():
+                loss = self.compute_loss(model, inputs)
 
-          if self.args.n_gpu > 1:
-              loss = loss.mean()  # mean() to average on multi-gpu parallel training
+            if self.args.n_gpu > 1:
+                loss = loss.mean()  # mean() to average on multi-gpu parallel training
 
-          if self.do_grad_scaling:
-              self.scaler.scale(loss).backward()
-          else:
-              self.accelerator.backward(loss)
+            if self.do_grad_scaling:
+                self.scaler.scale(loss).backward()
+            else:
+                self.accelerator.backward(loss)
 
-          return loss.detach() / self.args.gradient_accumulation_steps
+            return loss.detach() / self.args.gradient_accumulation_steps
 
     def log(self, logs):
         """
@@ -339,6 +344,7 @@ def sample_history(history):
 
     return history[0 : len(history) : step]
 
+
 # Copy file
 def smart_copy(remote_path, local_path):
     with open(remote_path, "wb") as remote_file:
@@ -348,7 +354,7 @@ def smart_copy(remote_path, local_path):
 
 def authorize_lamini():
     _ = load_dotenv(find_dotenv())
-    lamini_api_key = os.environ['LAMINI_API_KEY']
+    lamini_api_key = os.environ["LAMINI_API_KEY"]
     llm = LLMEngine(
         id="exploring",
         config={
