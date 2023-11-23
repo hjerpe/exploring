@@ -3,7 +3,7 @@
 {
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"name": "vertex-ai-applying-embeddings",
-	"image": "europe-docker.pkg.dev/ad39-p-modelengine-ver-4fbb/model-engine-docker/model-engine-science-box:1.7-rc3",
+	"image": "vertex-ai-applying-embeddings-box:0.1",
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
 	// Configure tool-specific properties.
