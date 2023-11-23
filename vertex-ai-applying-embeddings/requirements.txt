@@ -1,13 +1,15 @@
 altair==5.1.2
 cohere==4.27
-google-cloud-aiplatform
+google-cloud-aiplatform==1.35.0
+google-cloud-bigquery==3.12.0
 ipympl==0.9.3
-jupyterlab
 matplotlib==3.7.3
 mplcursors==0.5.2
 mypy
+notebook
 numba==0.58.0
 numpy>=1.22.0
+pandas
 pre-commit
 python-dotenv
 scann==1.2.6
