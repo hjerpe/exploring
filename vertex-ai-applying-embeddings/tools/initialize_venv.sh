@@ -18,7 +18,7 @@ if [ ! -d "$venv_path/$default_venv" ] ; then
     pip3 install ipykernel
     echo "Create ipykernel $default_venv"
     # Install ipykernel
-    python -m ipykernel install --user --name=$default_venv
+    python3 -m ipykernel install --user --name=$default_venv
 fi
 echo "Activating environment: $venv_path/$default_venv/bin/activate"
 source "$venv_path/$default_venv/bin/activate"

@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # Set the path to your virtual environment
-#project_name="PodPal"
 SCRIPT_DIR_PARENT=$( cd -- "$( dirname -- "$(dirname -- "${BASH_SOURCE[0]}")" )" &> /dev/null && pwd )
 venv_path="$SCRIPT_DIR_PARENT/venvs"
 default_venv="default_venv"
@@ -14,6 +13,8 @@ if [ ! -d "$venv_path/$default_venv" ] ; then
     source "$venv_path/$default_venv/bin/activate"
     echo "Installing requirements.txt"
     pip3 install -r requirements.txt
+    echo "Install pre-commit hooks"
+    pre-commit install
     pip3 install ipykernel
     echo "Create ipykernel $default_venv"
     # Install ipykernel
