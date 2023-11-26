@@ -7,7 +7,6 @@ import numpy as np
 import torch
 import torch.nn as nn
 import torchvision.transforms as transforms
-from dotenv import load_dotenv
 from matplotlib.animation import FuncAnimation, PillowWriter
 from PIL import Image
 from torch.utils.data import DataLoader, Dataset
