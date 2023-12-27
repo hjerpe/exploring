@@ -1,0 +1,12 @@
+click
+google-auth
+google-cloud-aiplatform
+google-cloud-bigquery
+google-cloud-pipeline-components
+kfp
+mypy
+notebook
+pre-commit
+python-dotenv
+pyyaml
+tensorboard
