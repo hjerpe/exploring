@@ -16,3 +16,4 @@ This repository is dedicated to exploring and understanding various artificial i
 - `tools-and-agents-with-langchain`: Resources and examples for working with tools and agents using the LangChain library.
 - `vector_dbs_from_embeddings_to_applications`: Showcasing vector embeddings and their application in embedding MNIST images and NLP sentences, and their practical applications in AI models.
 - `vertex-ai-applying-embeddings`: Applying embeddings in AI models with Vertex AI.
+- `building-and-evaluating-advanced-rag`: A comprehensive exploration of Retrieval-Augmented Generation (RAG), detailing architecture, metrics, optimization, and integration techniques for RAG systems.

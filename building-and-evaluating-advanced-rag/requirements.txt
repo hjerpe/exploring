@@ -1,0 +1,15 @@
+click
+ipywidgets
+llama-index==v0.9.14.post3
+mypy
+notebook
+openai
+pre-commit
+pypdf
+python-dotenv
+pyyaml
+sentence-transformers
+torch
+transformers
+trulens
+trulens-eval==0.20.0
