@@ -1,0 +1,12 @@
+chromadb==0.4.22
+click
+langchain==0.1.0
+mypy
+notebook
+openai==1.6.1
+pre-commit
+pypdf==3.17.4
+python-dotenv
+pyyaml
+sentence-transformers==2.2.2
+umap-learn==0.5.5
