@@ -18,3 +18,4 @@ This repository is dedicated to exploring and understanding various artificial i
 - `vertex-ai-applying-embeddings`: Applying embeddings in AI models with Vertex AI.
 - `building-and-evaluating-advanced-rag`: A comprehensive exploration of Retrieval-Augmented Generation (RAG), detailing architecture, metrics, optimization, and integration techniques for RAG systems.
 - `reinforcement-learning-from-human-feedback`: Detailed guide on implementing a reinforcement learning strategy using Vertex AI, from data acquisition, running pipeline jobs, to evaluating results.
+- `advanced-retrieval-for-ai`: A deep dive into advanced techniques for embeddings-based retrieval, including query expansion and re-ranking strategies, tailored to enhance the precision and relevancy of search results in AI systems.
