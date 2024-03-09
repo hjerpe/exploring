@@ -1,0 +1,7 @@
+click
+mypy
+notebook
+pre-commit
+python-dotenv==1.0.0
+pyyaml
+together==0.2.10
