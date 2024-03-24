@@ -3,12 +3,8 @@
 # stop on error
 set -e
 source docker-name.sh
+source .neo4j-env.sh
 export PYTHON_APP_IMAGE="$image_name"
-
-# Copy files into the current directory (Docker context)
-cp .docker_requirements.txt notebook/
-cp .docker_requirements_scientific.txt notebook/
+export NEO4J_PASSWORD="$NEO4J_PASSWORD"
 
 docker-compose up --build
-rm notebook/.docker_requirements.txt
-rm notebook/.docker_requirements_scientific.txt

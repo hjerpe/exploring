@@ -3,7 +3,7 @@ services:
   neo4j:
     image: neo4j:latest
     environment:
-      NEO4J_AUTH: neo4j/password
+      NEO4J_AUTH: "neo4j/${NEO4J_PASSWORD}"
     ports:
       - "7474:7474"
       - "7687:7687"
@@ -13,7 +13,9 @@ services:
       - ./neo4j/import:/var/lib/neo4j/import
       - ./neo4j/plugins:/plugins
   python_app:
-    build: ./notebook
+    build:
+      context: .
+      dockerfile: notebook/Dockerfile
     image: "${PYTHON_APP_IMAGE:-default-python-app-image}"
     volumes:
       - ./notebook:/usr/src/app
