@@ -1,0 +1,15 @@
+click
+datasets==2.18.0
+gradio==4.21.0
+inflect==7.0.0
+librosa==0.10.1
+mypy
+notebook
+phonemizer==3.2.1
+pillow==10.2.0
+pre-commit
+python-dotenv
+pyyaml
+sentence-transformers==2.5.1
+timm==0.9.16
+torchvision==0.17.1
