@@ -1,5 +1,7 @@
 click
+langchain-community==0.0.29
 mypy
+neo4j
 notebook
 pre-commit
 python-dotenv

@@ -1,0 +1,51 @@
+version: '3'
+services:
+  app:
+    build:
+      # context: .
+      # dockerfile: Dockerfile
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      # - .././:/workspace
+      - ../../:/workspace
+    environment:
+      - TEST=test
+    command: sleep infinity
+    depends_on:
+      - neo4j
+
+    links:
+      - neo4j
+    # networks:
+    #   - neo_net
+  neo4j:
+    image: neo4j:latest
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    expose:
+      - 7474
+      - 7687
+    restart: on-failure
+    # healthcheck:
+    #   test: ["CMD", "cypher-shell", "-u", "neo4j", "-p", "test", "--no-shutdown-hook", "--format", "code", "RETURN 1"]
+    #   interval: 30s
+    #   timeout: 30s
+    #   retries: 10
+    #   start_period: 40s
+    volumes:
+      - ./../neo4j_db/data:/data
+      - ./../neo4j_db/logs:/logs
+      - ./../neo4j_db/import:/var/lib/neo4j/import
+      - ./../neo4j_db/plugins:/plugins
+      # - '$HOME/neo4j/data:/data'
+      # - '$HOME/neo4j/conf/:/conf/'
+    environment:
+      - NEO4J_AUTH=neo4j/testtesttest
+    # networks:
+    #   - neo_net
+volumes:
+  db:
+# networks:
+#   neo_net:
