@@ -1,4 +1,5 @@
 FROM mcr.microsoft.com/devcontainers/python:0-3.10
+# FROM python:3.10
 
 USER root
 RUN apt-get update \
@@ -11,12 +12,7 @@ ENV USER=vscode
 USER $USER
 
 WORKDIR /home/$USER
-COPY ./../.docker_requirements.txt .
-COPY ./../.docker_requirements_scientific.txt .
-
-ARG DOCKER_IMAGE_TYPE
-RUN if [ "$DOCKER_IMAGE_TYPE" = "minimal" ]; then \
-        pip install -r .docker_requirements.txt; \
-    else \
-        pip install -r .docker_requirements_scientific.txt; \
-    fi
+# COPY ./../.docker_requirements.txt .
+COPY ./.docker_requirements_scientific.txt .
+RUN pip install --no-cache-dir -r .docker_requirements_scientific.txt
+# COPY . .
