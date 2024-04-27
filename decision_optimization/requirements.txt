@@ -1,0 +1,10 @@
+click
+ipywidgets
+matplotlib==3.8.4
+matplotlib-inline==0.1.7
+mypy
+notebook
+pre-commit
+python-dotenv
+pyyaml
+wandb==0.16.6
