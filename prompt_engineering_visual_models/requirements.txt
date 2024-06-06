@@ -2,6 +2,7 @@
 # For Python 3.9.18
 
 accelerate==0.26.1
+comet-ml==3.43.0
 ipython==8.18.1
 ipywidgets==8.1.2
 numpy==1.23.5
