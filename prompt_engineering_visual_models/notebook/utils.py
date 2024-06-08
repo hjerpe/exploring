@@ -1,5 +1,7 @@
+import json
 import random
 
+import matplotlib.patheffects as pe
 import matplotlib.pyplot as plt
 import numpy as np
 import torch
@@ -276,3 +278,72 @@ def show_binary_mask(masks, scores):
     ax.title.set_text(f"Score: {score.item():.3f}")
     ax.axis("off")
     plt.show()
+
+
+def preprocess_outputs(output):
+    input_scores = [x["score"] for x in output]
+    input_labels = [x["label"] for x in output]
+    input_boxes = []
+    for i in range(len(output)):
+        input_boxes.append([*output[i]["box"].values()])
+    input_boxes = [input_boxes]
+    return input_scores, input_labels, input_boxes
+
+
+def show_boxes_and_labels_on_image(raw_image, boxes, labels, scores):
+    plt.figure(figsize=(10, 10))
+    plt.imshow(raw_image)
+    for i, box in enumerate(boxes):
+        show_box(box, plt.gca())
+        plt.text(
+            x=box[0],
+            y=box[1] - 12,
+            s=f"{labels[i]}: {scores[i]:,.4f}",
+            c="beige",
+            path_effects=[pe.withStroke(linewidth=4, foreground="darkgreen")],
+        )
+    plt.axis("on")
+    plt.show()
+
+
+def make_bbox_annots(input_scores, input_labels, input_boxes, image_metadata):
+
+    if len(input_boxes[0]) == 0:
+        return None
+
+    annotations = [
+        {
+            "name": "bbox annots",
+            "data": [],
+            "metadata": image_metadata,
+        }
+    ]
+
+    for i in range(len(input_boxes[0])):
+        annotations[0]["data"].append(
+            {
+                "label": input_labels[i],
+                "score": round((input_scores[i] * 100), 2),
+                # bboxes in pascal_voc format, return in coco format for Comet annotations
+                "boxes": make_coco_boxes(input_boxes[0][i]),
+                "points": None,
+            }
+        )
+    annotations = json.loads(json.dumps(annotations))
+    return annotations
+
+
+def make_coco_boxes(detections_boxes):
+
+    """Convert torch tensor Pascal VOC bboxes to COCO format for Comet annotations"""
+
+    list_boxes = detections_boxes
+    coco_boxes = [
+        [
+            list_boxes[0],
+            list_boxes[1],
+            (list_boxes[2] - list_boxes[0]),
+            (list_boxes[3] - list_boxes[1]),
+        ]
+    ]
+    return coco_boxes
