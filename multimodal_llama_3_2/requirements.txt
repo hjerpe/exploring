@@ -1,0 +1,12 @@
+blobfile==3.0.0
+gradio==4.43.0
+llama-stack==0.0.36
+llama-stack-client==0.0.35
+matplotlib==3.9.2
+numpy
+python-dotenv~=1.0.1
+tavily-python==0.5.0
+tiktoken==0.7.0
+together==1.2.0
+torch==2.4.0
+wolframalpha==5.1.3
