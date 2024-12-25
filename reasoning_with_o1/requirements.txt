@@ -1,0 +1,9 @@
+httpx==0.27.2
+ipython==8.13.2
+# requirements file
+openai==1.54.0
+pandas==2.2.3
+python-dotenv==1.0.1
+redlines
+termcolor==2.5.0
+tiktoken==0.8.0
