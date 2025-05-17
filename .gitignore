@@ -7,3 +7,4 @@ venvs/
 **.pyc
 **.jsonl
 **lm-evaluation-harness
+.qodo
