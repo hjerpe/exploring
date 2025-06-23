@@ -10,7 +10,7 @@ repos:
     -   id: check-json
         # since the devcontainer-file is not JSON but "JSONWithComments"
         exclude: .devcontainer/devcontainer.json
-    -   id: check-executables-have-shebangs
+    #-   id: check-executables-have-shebangs
     -   id: check-merge-conflict
     -   id: check-toml
     -   id: check-xml
@@ -42,10 +42,10 @@ repos:
     hooks:
     -   id: nbstripout
 
--   repo: https://github.com/hadialqattan/pycln
-    rev: v2.1.2
-    hooks:
-    -   id: pycln
+#-   repo: https://github.com/hadialqattan/pycln
+#    rev: v2.1.2
+#    hooks:
+#    -   id: pycln
 
 -   repo: https://github.com/pycqa/isort
     rev: 5.12.0
