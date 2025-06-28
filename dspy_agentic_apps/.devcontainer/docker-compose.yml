@@ -1,0 +1,84 @@
+services:
+  dev:
+    #build:
+      #context: ..
+      #dockerfile: .devcontainer/Dockerfile  # Specify the Dockerfile if not in the root or with a different name
+    image: ds_container_base-box:0.1      # ← your original image
+    user: vscode
+    volumes:
+      - ../../:/workspace:cached
+    working_dir: /workspace
+    depends_on:
+      - postgres
+      - minio
+      - mlflow
+    command: sleep infinity
+
+# -- METADATA STORE --
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: mlflow
+      POSTGRES_PASSWORD: mlflow_pw
+      POSTGRES_DB: mlflow_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+# -- ARTIFACT STORE --
+  minio:
+    image: minio/minio:latest
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: minio_user
+      MINIO_ROOT_PASSWORD: minio_password
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/ready"]
+      interval: 5s
+      retries: 5
+    volumes:
+      - minio_data:/data
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+
+# -- CREATE BUCKET --
+  # This service creates the bucket in MinIO for MLflow artifacts
+  create-bucket:
+    image: minio/mc:latest
+    depends_on:
+      minio:
+        condition: service_healthy
+    entrypoint: >
+      bash -c "
+      mc alias set myminio http://minio:9000 minio_user minio_password &&
+      mc mb myminio/mlflow
+      || true
+      "
+
+# ---------- MLflow (custom build) ----------
+  mlflow:
+    build:
+      context: .
+      dockerfile: mlflow.Dockerfile
+    depends_on:
+      postgres:
+        condition: service_started
+      minio:
+        condition: service_healthy
+    environment:
+      MLFLOW_S3_ENDPOINT_URL: http://minio:9000
+      AWS_ACCESS_KEY_ID: minio_user
+      AWS_SECRET_ACCESS_KEY: minio_password
+    command: >
+      mlflow server
+        --backend-store-uri postgresql://mlflow:mlflow_pw@postgres:5432/mlflow_db
+        --artifacts-destination s3://mlflow
+        --host 0.0.0.0
+        --port 5000
+    ports: ["5500:5000"]
+
+volumes:
+  pgdata:
+  minio_data:
