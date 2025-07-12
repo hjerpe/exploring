@@ -1,0 +1,6 @@
+[tool.pycln]
+all = true
+expand_stars = true
+verbose = false
+include = ["*.py"]
+exclude = ["tests/"]
