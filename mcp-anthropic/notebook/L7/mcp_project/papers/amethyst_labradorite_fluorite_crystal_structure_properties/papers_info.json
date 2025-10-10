@@ -1,0 +1,63 @@
+{
+  "0908.3558v1": {
+    "title": "First-principles study of ground state properties and high pressure behavior of ThO2",
+    "authors": [
+      "Baotian Wang",
+      "Hongliang Shi",
+      "Weidong Li",
+      "Ping Zhang"
+    ],
+    "summary": "The mechanical properties, electronic structure and phonon dispersion of\nground state ThO$_{2}$ as well as the structure behavior up to 240 GPa are\nstudied by using first-principles density-functional theory. Our calculated\nelastic constants indicate that both the ground state fluorite structure and\nhigh pressure cotunnite structure of ThO$_{2}$ are mechanically stable. The\nbulk modulus, shear modulus, and Young's modulus of cotunnite ThO$_{2}$ are all\nsmaller by approximately 25% compared with those of fluorite ThO$_{2}$. The\nPoisson's ratios of both structures are approximately equal to 0.3 and the\nhardness of fluorite ThO$_{2}$ is 27.33 GPa. The electronic structure and\nbonding nature of fluorite ThO$_{2}$ are fully analyzed, which show that the\nTh-O bond displays a mixed ionic/covalent character. The valence of Th and O\nions in fluorite ThO$_{2}$ can be represented as Th$^{3.834+}$ and\nO$^{0.452-}$. The phase transition from the fluorite to cotunnite structure is\ncalculated to be at the pressure of 26.5 GPa, consistent with recent\nexperimental measurement by Idiri \\emph{et al}. \\cite{Idiri}. For the cotunnite\nphase it is further predicted that an isostructural transition takes place in\nthe pressure region of 80 to 130 GPa.",
+    "pdf_url": "http://arxiv.org/pdf/0908.3558v1",
+    "published": "2009-08-25"
+  },
+  "2411.11579v2": {
+    "title": "Glassy disordered ground states in the frustrated pyrochlore and fluorite antiferromagnets NaCd$M_2$F$_7$ ($M$ = Ni$^{2+}$, Mn$^{2+}$)",
+    "authors": [
+      "Andrej Kancko",
+      "Cinthia Antunes Corr\u00eaa",
+      "Ross Harvey Colman"
+    ],
+    "summary": "We report the crystal structures, magnetic and thermodynamic properties of\ntwo magnetically frustrated $A$'$A$\"$M_2$F$_7$-type antiferromagnets,\nNaCdNi$_2$F$_7$ and NaCdMn$_2$F$_7$. While NaCdNi$_2$F$_7$ forms a stable\npyrochlore structure (SG: $Fd \\overline{3} m$, #227) with magnetic $S$ = 1\nNi$^{2+}$ ions on the frustrated pyrochlore 16$c$ site and fully disordered\nnon-magnetic Na$^+$/Cd$^{2+}$ ions on the pyrochlore 16$d$ site,\nNaCdMn$_2$F$_7$ favors the defect-fluorite structure (SG: $Fm \\overline{3} m$,\n#225) with magnetic $S$ = 5/2 Mn$^{2+}$ and non-magnetic Na$^+$ and Cd$^{2+}$\nions fully disordered on the fluorite 4$a$ site. This is a result of the\nMn$^{2+}$ ionic radius being too close to the average Na$^+$/Cd$^{2+}$ ionic\nradius, hindering the cationic site ordering towards the stable pyrochlore\nstructure. In both cases, dominant antiferromagnetic interactions\n$\\theta_{CW,Ni}$ = -91.2(5) K and $\\theta_{CW,Mn}$ = -42.4(4) K are noted, with\nno magnetic transition until $T_{f,Ni}$ = 3.2 K and $T_{f,Mn}$ = 2.0 K,\nimplying substantial frustration, with frustration indices $f_{Ni}$ = 28.5 and\n$f_{Mn}$ = 21. AC susceptibility measurements and bifurcation of ZFC/FC\nlow-field magnetization indicate a glassy ground-state, precipitated by the\nmagnetic-bond-disorder stemming from the inherent structural disorder.",
+    "pdf_url": "http://arxiv.org/pdf/2411.11579v2",
+    "published": "2024-11-18"
+  },
+  "1204.5824v1": {
+    "title": "Elastic and electronic properties of fluorite RuO_2 from first principle",
+    "authors": [
+      "Z. J. Yang",
+      "A. M. Guo",
+      "Y. D. Guo",
+      "J. Li",
+      "Z. Wang",
+      "Q. Liu",
+      "R. F. Linghu",
+      "X. D. Yang"
+    ],
+    "summary": "The elastic, thermodynamic, and electronic properties of fluorite RuO_2 under\nhigh pressure are investigated by plane-wave pseudopotential density functional\ntheory. The optimized lattice parameters, elastic constants, bulk modulus, and\nshear modulus are consistent with other theoretical values. The phase\ntransition from modified fluorite-type to fluorite is 88 GPa (by localized\ndensity approximation, LDA) or 115.5 GPa (by generalized gradient\napproximation, GGA). The Young's modulus and Lam\\'e's coefficients are also\nstudied under high pressure. The structure turned out to be stable for the\npressure up to 120 GPa by calculating elastic constants. In addition, the\nthermodynamic properties, including the Debye temperature, heat capacity,\nthermal expansion coefficient, Gr\\\"uneisen parameter, and Poisson's ratio, are\ninvestigated. A small band gap is found in the electronic structure of fluorite\nRuO_2 and the bandwidth increases with the pressure. Also, the present\nmechanical and electronic properties demonstrate that the bonding nature is a\ncombination of covalent, ionic, and metallic contributions.",
+    "pdf_url": "http://arxiv.org/pdf/1204.5824v1",
+    "published": "2012-04-26"
+  },
+  "2412.11518v1": {
+    "title": "Specific Heat Anomalies and Local Symmetry Breaking in (Anti-)Fluorite Materials: A Machine Learning Molecular Dynamics Study",
+    "authors": [
+      "Keita Kobayashi",
+      "Hiroki Nakamura",
+      "Masahiko Okumura",
+      "Mitsuhiro Itakura",
+      "Masahiko Machida"
+    ],
+    "summary": "Understanding the high-temperature properties of materials with\n(anti-)fluorite structures is crucial for their application in nuclear\nreactors. In this study, we employ machine learning molecular dynamics (MLMD)\nsimulations to investigate the high-temperature thermal properties of thorium\ndioxide, which has a fluorite structure, and lithium oxide, which has an\nanti-fluorite structure. Our results show that MLMD simulations effectively\nreproduce the reported thermal properties of these materials. A central focus\nof this work is the analysis of specific heat anomalies in these materials at\nhigh temperatures, commonly referred to as Bredig, pre-melting, or\n$\\lambda$-transitions. We demonstrate that a local order parameter, analogous\nto those used to describe liquid-liquid transitions in supercooled water and\nliquid silica, can effectively characterize these specific heat anomalies. The\nlocal order parameter identifies two distinct types of defective structures:\nlattice defect-like and liquid-like local structures. Above the transition\ntemperature, liquid-like local structures predominate, and the sub-lattice\ncharacter of mobile atoms disappears.",
+    "pdf_url": "http://arxiv.org/pdf/2412.11518v1",
+    "published": "2024-12-16"
+  },
+  "1210.3593v1": {
+    "title": "Pattern matching in compilers",
+    "authors": [
+      "Ond\u0159ej B\u00edlka"
+    ],
+    "summary": "In this thesis we develop tools for effective and flexible pattern matching.\nWe introduce a new pattern matching system called amethyst. Amethyst is not\nonly a generator of parsers of programming languages, but can also serve as an\nalternative to tools for matching regular expressions.\n  Our framework also produces dynamic parsers. Its intended use is in the\ncontext of IDE (accurate syntax highlighting and error detection on the fly).\nAmethyst offers pattern matching of general data structures. This makes it a\nuseful tool for implementing compiler optimizations such as constant folding,\ninstruction scheduling, and dataflow analysis in general.\n  The parsers produced are essentially top-down parsers. Linear time complexity\nis obtained by introducing the novel notion of structured grammars and\nregularized regular expressions. Amethyst uses techniques known from compiler\noptimizations to produce effective parsers.",
+    "pdf_url": "http://arxiv.org/pdf/1210.3593v1",
+    "published": "2012-10-12"
+  }
+}

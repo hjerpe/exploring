@@ -1,0 +1,9 @@
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE}
+
+USER root
+# Install any system dependencies required for PyTorch here, if any
+
+USER $USER
+COPY ./.docker_requirements_pytorch.txt .
+RUN pip install --user --no-warn-script-location -r .docker_requirements_pytorch.txt
