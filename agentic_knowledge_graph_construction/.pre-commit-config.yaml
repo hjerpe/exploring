@@ -1,0 +1,63 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+# Security scanning
+-   repo: https://github.com/gitleaks/gitleaks
+    rev: v8.22.1
+    hooks:
+    -   id: gitleaks
+        name: "🔒 Security: Detect hardcoded secrets"
+
+# General file quality checks
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+    -   id: check-added-large-files
+    -   id: check-ast
+    -   id: check-json
+        # since the devcontainer-file is not JSON but "JSONWithComments"
+        exclude: .devcontainer/devcontainer.json
+    -   id: check-merge-conflict
+    -   id: check-toml
+    -   id: check-xml
+    -   id: check-yaml
+        args: ["--allow-multiple-documents"]
+    -   id: detect-private-key
+    -   id: end-of-file-fixer
+        exclude: .devcontainer.json|docs
+        exclude_types: [csv]
+        types: [text]
+    -   id: mixed-line-ending
+        args: ['--fix=lf']
+        types: [text]
+        exclude_types: [csv]
+    -   id: requirements-txt-fixer
+    -   id: trailing-whitespace
+        exclude_types: [csv]
+        types: [text]
+    -   id: name-tests-test
+        args: ['--django'] # Argument 'django' checks that test file names start with "test"
+
+# Python formatting and linting (replaces black, isort, pycln)
+-   repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.9.1
+    hooks:
+    -   id: ruff
+        name: "🐍 Python: Lint with Ruff"
+        args: [--fix]
+    -   id: ruff-format
+        name: "🐍 Python: Format with Ruff"
+
+# Python type checking
+-   repo: https://github.com/RobertCraigie/pyright-python
+    rev: v1.1.406
+    hooks:
+    -   id: pyright
+        name: "🐍 Python: Type check with Pyright"
+
+# Jupyter notebook support
+-   repo: https://github.com/kynan/nbstripout
+    rev: 0.7.1
+    hooks:
+    -   id: nbstripout
+        name: "📓 Jupyter: Strip notebook output"
